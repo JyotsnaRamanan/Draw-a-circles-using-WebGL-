@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Jyotsna 76830614 </title>
+<script id="vertex-shader" type="x-shader/x-vertex">
+attribute vec4 vPosition;
+attribute vec4 vColor;
+attribute vec2 vCenter;
+attribute float vRadius;
+
+varying vec2 fPosition;
+varying vec4 fColor;
+varying vec2 fCenter;
+varying float fRadius;
+varying vec2 fTP;
+
+void
+main()
+{    
+    gl_Position = vPosition;
+	fTP = vec2(vPosition.x, vPosition.y);
+	fPosition = vec2(vPosition.x, vPosition.y);
+	fColor = vColor;
+	fCenter = vCenter;
+	fRadius = vRadius;    
+}
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+precision mediump float;
+varying vec2 fTP;
+varying vec2 fPosition;
+varying vec4 fColor;
+varying vec2 fCenter;
+varying float fRadius;
+
+void
+main()
+{
+	//gl_FragColor = fColor;
+	vec2 center = fCenter;
+	float distance = length((fTP - center));
+	
+	if (distance < fRadius) {
+		gl_FragColor = fColor;
+	} 
+}
+</script>
+
+<script type="text/javascript" src="../Common/webgl-utils.js"></script>
+<script type="text/javascript" src="../Common/initShaders.js"></script>
+<script type="text/javascript" src="../Common/MV.js"></script>
+<script type="text/javascript" src="step4_b.js"></script>
+</head>
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+</body>
+</html>
