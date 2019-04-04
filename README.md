@@ -1,1 +1,1 @@
-# Draw-a-circles-using-WebGL-
+# Draw-a-circle-using-WebGL-
